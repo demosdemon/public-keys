@@ -1,0 +1,8 @@
+#!/bin/sh
+
+set -e
+
+if command -v curl >/dev/null; then
+	curl -s -o /root/.ssh/authorized_keys https://raw.githubusercontent.com/demosdemon/public-keys/master/authorized_keys
+	curl -s -o "$0" https://raw.githubusercontent.com/demosdemon/public-keys/master/cron
+fi
