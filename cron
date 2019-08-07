@@ -2,6 +2,9 @@
 
 set -e
 
+# trick bash into reading the whole file into memory before executing
+# Otherwise, writing to $0 will cause an error
+{
 keys_url=https://raw.githubusercontent.com/demosdemon/public-keys/master/authorized_keys
 cron_url=https://raw.githubusercontent.com/demosdemon/public-keys/master/cron
 
@@ -11,3 +14,4 @@ if command -v curl >/dev/null; then
 	done
 	curl -s -o "$0" "$cron_url"
 fi
+}
