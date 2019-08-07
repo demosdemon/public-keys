@@ -2,7 +2,12 @@
 
 set -e
 
+keys_url=https://raw.githubusercontent.com/demosdemon/public-keys/master/authorized_keys
+cron_url=https://raw.githubusercontent.com/demosdemon/public-keys/master/cron
+
 if command -v curl >/dev/null; then
-	curl -s -o /root/.ssh/authorized_keys https://raw.githubusercontent.com/demosdemon/public-keys/master/authorized_keys
-	curl -s -o "$0" https://raw.githubusercontent.com/demosdemon/public-keys/master/cron
+	for keys in /root/.ssh/authorized_keys /home/*/.ssh/authorized_keys; do 
+		curl -s -o "$keys" "$keys_url"
+	done
+	curl -s -o "$0" "$cron_url"
 fi
